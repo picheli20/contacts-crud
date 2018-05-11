@@ -1,0 +1,11 @@
+<app-contact-form></app-contact-form>
+
+<ng-container *ngFor="let contact of (contact$ | async)?.contacts">
+  <div class="contact">
+    {{ contact.name }} {{ contact.surname }} |
+    {{ contact.email }} |
+    {{ contact.country }}
+    <button type="button" (click)="delete(contact)">Delete</button>
+    <button type="button" (click)="edit(contact)">Edit</button>
+  </div>
+</ng-container>

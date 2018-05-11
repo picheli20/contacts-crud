@@ -1,0 +1,19 @@
+<form novalidate [formGroup]="form" (submit)="submit()">
+  <input
+    type="text"
+    placeholder="Name"
+    formControlName="name">
+  <input
+    type="text"
+    placeholder="Surname"
+    formControlName="surname">
+  <input
+    type="text"
+    placeholder="E-mail"
+    formControlName="email">
+  <input
+    type="text"
+    placeholder="Country"
+    formControlName="country">
+  <button type="submit" [disabled]="!form.valid">Add</button>
+</form>
