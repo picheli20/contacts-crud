@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { concatMap } from 'rxjs/operators/concatMap';
 import { map } from 'rxjs/operators/map';
+import { pluck } from 'rxjs/operators/pluck';
 import { Observable } from 'rxjs/Observable';
 
 import { CacheService } from 'app/core/cache/cache.service';
@@ -73,7 +74,7 @@ export class ContactEffects {
   getAction(type: ContactActionTypes): Observable<Contact> {
     return this.actions$.pipe(
       ofType<Create>(type),
-      map(item => item.payload),
+      pluck('payload'),
     );
   }
 }
