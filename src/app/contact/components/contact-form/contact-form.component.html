@@ -1,20 +1,37 @@
-<form novalidate [formGroup]="form" (submit)="submit()">
-  <input
-    type="text"
-    placeholder="Name"
-    formControlName="name">
-  <input
-    type="text"
-    placeholder="Surname"
-    formControlName="surname">
-  <input
-    type="text"
-    placeholder="E-mail"
-    formControlName="email">
-  <select formControlName="country">
-    <option *ngFor="let country of countries$ | async" [ngValue]="country">
-      {{country.name}}
-    </option>
-  </select>
-  <button type="submit" [disabled]="!form.valid">Add</button>
-</form>
+<div class="modal" [routerLink]="[ '/' ]"></div>
+<div class="modal-content" @in>
+  <h3>
+    <ng-container *ngIf="!editing">New Contact</ng-container>
+    <ng-container *ngIf="editing">Edit Contact</ng-container>
+  </h3>
+  <form novalidate [formGroup]="form" (submit)="submit()">
+    <mat-form-field class="form-item">
+      <input
+        matInput
+        type="text"
+        placeholder="Name"
+        formControlName="name">
+    </mat-form-field>
+    <mat-form-field class="form-item">
+      <input
+        matInput
+        type="text"
+        placeholder="Surname"
+        formControlName="surname">
+    </mat-form-field>
+    <mat-form-field class="form-item">
+      <input
+        matInput
+        type="email"
+        [email]="true"
+        placeholder="E-mail"
+        formControlName="email">
+    </mat-form-field>
+    <mat-form-field class="form-item">
+      <mat-select [compareWith]="compareByCode" placeholder="Country" formControlName="country">
+        <mat-option *ngFor="let country of countries$ | async" [value]="country">{{country.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button type="submit" [disabled]="!form.valid" color="primary">Add</button>
+  </form>
+</div>

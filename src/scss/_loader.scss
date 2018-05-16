@@ -1,0 +1,44 @@
+/*!
+ * Do not import this file anywhere.
+ * Read more at README.md in the application loader section.
+ */
+
+ @keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.cloak {
+  background: $base-background-color;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  img {
+    display: block;
+    margin: 14vw auto 1.5rem;
+    width: 30vw;
+    height: 100px;
+    max-width: 300px;
+    min-width: 150px;
+  }
+
+  .loader {
+    width: 6vw;
+    height: 6vw;
+    min-height: 40px;
+    min-width: 40px;
+    margin: 0 auto;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyBzdHJva2U9IiNmZmYiIHZpZXdCb3g9IjAgMCAzOCAzOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxIDEpIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTgiIHN0cm9rZS1vcGFjaXR5PSIuNSIvPjxwYXRoIGQ9Ik0zNiAxOGMwLTkuOTQtOC4wNi0xOC0xOC0xOCI+PGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiBkdXI9IjFzIiBmcm9tPSIwIDE4IDE4IiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdG89IjM2MCAxOCAxOCIgdHlwZT0icm90YXRlIi8+PC9wYXRoPjwvZz48L3N2Zz4=');
+    background-size: contain;
+    opacity: 0;
+    animation: fade-in 1s ease-in forwards;
+  }
+}

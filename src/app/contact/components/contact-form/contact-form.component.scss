@@ -1,0 +1,40 @@
+@import 'variables';
+
+.modal {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: rgba(#000, .3);
+  z-index: 10;
+}
+
+.modal-content {
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  z-index: 11;
+  position: fixed;
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  bottom: 0;
+  margin-left:auto;
+  margin-right:auto;
+  left: 0;
+  right: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 400px;
+
+  @media (max-width: $break-sm) {
+    width: 90%;
+  }
+}
+
+.form-item {
+  width: 100%;
+}
+
+h3 {
+  margin-top: 0;
+}

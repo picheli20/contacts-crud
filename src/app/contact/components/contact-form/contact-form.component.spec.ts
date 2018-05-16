@@ -2,6 +2,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
+import { Router, ActivatedRoute } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs/observable/of';
 
 import { ContactFormComponent } from './contact-form.component';
@@ -20,9 +22,8 @@ describe('ContactFormComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [
-        StoreModule.forRoot({
-          'contact': reducer
-        }),
+        StoreModule.forRoot({ 'contact': reducer }),
+        BrowserAnimationsModule,
       ],
       declarations: [
         ContactFormComponent,
@@ -34,7 +35,19 @@ describe('ContactFormComponent', () => {
           useValue: {
             countries$: of([]),
           }
-        }
+        },
+        {
+          provide: Router,
+          useValue: {
+            navigate: () => {},
+          }
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({}),
+          }
+        },
       ]
     });
 
@@ -53,10 +66,7 @@ describe('ContactFormComponent', () => {
 
   describe('.constructor()', () => {
     it('should create the form', () => {
-      expect(component.form.controls['name']).toBeTruthy();
-      expect(component.form.controls['surname']).toBeTruthy();
-      expect(component.form.controls['email']).toBeTruthy();
-      expect(component.form.controls['country']).toBeTruthy();
+      ['name', 'surname', 'email', 'country'].map(i => expect(component.form.controls[i]).toBeTruthy());
     });
   });
 

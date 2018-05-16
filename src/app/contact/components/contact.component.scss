@@ -1,0 +1,44 @@
+@import 'variables';
+
+.contact-list {
+  max-width: $grid-max-width;
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  width: 100%;
+  color: #f8f8f6;
+}
+
+.add {
+  position: fixed;
+  right: 1.875rem;
+  bottom: 1.875rem;
+}
+
+.flag {
+  background-size: 150%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+mat-card-actions {
+  text-align: center;
+}
+
+mat-card {
+  margin: 5px;
+  width: calc(33% - 60px);
+
+  @media (max-width: $break-sm) {
+    width: calc(50% - 60px);
+  }
+
+  @media (max-width: $break-xs) {
+    width: calc(100% - 60px);
+  }
+}

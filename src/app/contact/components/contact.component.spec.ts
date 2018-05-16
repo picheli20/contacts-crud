@@ -46,12 +46,4 @@ describe('ContactComponent', () => {
       expect(store.dispatch).toHaveBeenCalledWith({ type: ContactActionTypes.Delete, payload });
     });
   });
-
-  describe('.edit()', () => {
-    it('should dispatch an action to edit', () => {
-      const payload = { id: 123, name: 'yoda' } as Contact;
-      component.edit(payload);
-      expect(store.dispatch).toHaveBeenCalledWith({ type: ContactActionTypes.Edit, payload });
-    });
-  });
 });

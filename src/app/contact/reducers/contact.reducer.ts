@@ -45,7 +45,7 @@ export const deleteReducer = (list: Contact[], item: Contact): Contact[] => {
 }
 
 export const editReducer = (list: Contact[], item: Contact): Contact[] => {
-  return list.map((contact: Contact) => contact.id === item.id ? { ...contact, ...item } : contact);
+  return list.map((contact: Contact) => contact.id === item.id ? Object.assign(contact, item) : contact);
 }
 
 export const createReducer = (list: Contact[], item: Contact): Contact[] => {

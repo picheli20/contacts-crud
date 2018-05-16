@@ -14,6 +14,7 @@ type Country {
 const country = {
   country: (args) => {
     const countries = countryList.getData();
+
     if (args.code) {
         return countries.filter(country => country.code === args.code);
     } else {

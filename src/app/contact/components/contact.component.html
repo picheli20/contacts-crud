@@ -1,11 +1,17 @@
-<app-contact-form></app-contact-form>
-
-<ng-container *ngFor="let contact of (contact$ | async)?.contacts">
-  <div class="contact">
-    {{ contact.name }} {{ contact.surname }} |
-    {{ contact.email }} |
-    {{ contact.country.name }}
-    <button type="button" (click)="delete(contact)">Delete</button>
-    <button type="button" (click)="edit(contact)">Edit</button>
-  </div>
-</ng-container>
+<router-outlet name="modal"></router-outlet>
+<div class="contact-list">
+  <h1>Contact list</h1>
+  <mat-card *ngFor="let contact of (contact$ | async)?.contacts" @in>
+    <mat-card-header>
+      <div mat-card-avatar class="flag" [style.backgroundImage]="getImageUrl(contact.country.code)" class="flag"></div>
+      <mat-card-title>{{ contact.name }} {{ contact.surname }}</mat-card-title>
+      <mat-card-subtitle>{{ contact.email }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ contact.country.name }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button (click)="delete(contact)">Delete</button>
+      <button mat-button  [routerLink]="[ {outlets: { modal: 'edit/' + contact.id } } ]">Edit</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<button mat-fab color="accent" class="add" [routerLink]="[ {outlets: { modal: 'add' } } ]">+</button>
