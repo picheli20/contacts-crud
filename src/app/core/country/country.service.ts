@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
+import { pluck } from 'rxjs/operators/pluck';
 
 import { ICountryResponse, query } from './country.graphql';
-import { pluck } from 'rxjs/operators/pluck';
 
 @Injectable()
 export class CountryService {
@@ -11,7 +11,6 @@ export class CountryService {
     pluck('data'),
     pluck('country'),
   );
-
 
   constructor(private apollo: Apollo) { }
 }
