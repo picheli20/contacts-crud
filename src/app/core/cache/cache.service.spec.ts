@@ -35,18 +35,6 @@ describe('CacheService', () => {
 
       subscription.unsubscribe();
     }));
-
-    it('should not  call storage.setItem() if storage is unavailable', inject([
-      CacheService,
-      STORAGE_TOKEN,
-    ], (service: CacheService, storage: Storage) => {
-      spyOn(storage, 'setItem');
-
-      service.isStorageEnable = false;
-      service.setItem('test', 123).subscribe();
-
-      expect(storage.setItem).not.toHaveBeenCalled();
-    }));
   });
 
   describe('.getItem()', () => {
@@ -59,20 +47,6 @@ describe('CacheService', () => {
       const subscription = service.getItem('test').subscribe();
 
       expect(storage.getItem).toHaveBeenCalledWith('test');
-
-      subscription.unsubscribe();
-    }));
-
-    it('should not  call storage.getItem() if storage is unavailable', inject([
-      CacheService,
-      STORAGE_TOKEN,
-    ], (service: CacheService, storage: Storage) => {
-      spyOn(storage, 'getItem');
-
-      service.isStorageEnable = false;
-      const subscription = service.getItem('test').subscribe();
-
-      expect(storage.getItem).not.toHaveBeenCalled();
 
       subscription.unsubscribe();
     }));
