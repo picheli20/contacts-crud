@@ -11,9 +11,10 @@
     type="text"
     placeholder="E-mail"
     formControlName="email">
-  <input
-    type="text"
-    placeholder="Country"
-    formControlName="country">
+  <select formControlName="country">
+    <option *ngFor="let country of countries$ | async" [ngValue]="country">
+      {{country.name}}
+    </option>
+  </select>
   <button type="submit" [disabled]="!form.valid">Add</button>
 </form>

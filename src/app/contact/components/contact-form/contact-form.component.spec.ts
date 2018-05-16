@@ -2,11 +2,14 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
+import { of } from 'rxjs/observable/of';
 
 import { ContactFormComponent } from './contact-form.component';
 
 import { reducer, State } from '../../reducers/contact.reducer';
-import { ContactActionTypes } from 'app/contact/actions/contact.action';
+import { ContactActionTypes } from '../../actions/contact.action';
+
+import { CountryService } from 'app/core/country/country.service';
 
 describe('ContactFormComponent', () => {
   let component: ContactFormComponent;
@@ -26,6 +29,12 @@ describe('ContactFormComponent', () => {
       ],
       providers: [
         FormBuilder,
+        {
+          provide: CountryService,
+          useValue: {
+            countries$: of([]),
+          }
+        }
       ]
     });
 

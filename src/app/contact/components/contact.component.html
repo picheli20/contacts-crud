@@ -4,7 +4,7 @@
   <div class="contact">
     {{ contact.name }} {{ contact.surname }} |
     {{ contact.email }} |
-    {{ contact.country }}
+    {{ contact.country.name }}
     <button type="button" (click)="delete(contact)">Delete</button>
     <button type="button" (click)="edit(contact)">Edit</button>
   </div>

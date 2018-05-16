@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "serve": "npm run serve:fe | npm run serve:be",
-    "serve:fe": "ng serve",
+    "serve:fe": "ng serve --proxy-config proxy.conf.json",
     "serve:be": "node server",
     "build": "ng build",
     "tdd": "ng test --watch=true --code-coverage --sourcemaps=false",
@@ -28,7 +28,12 @@
     "@angular/router": "^5.0.0",
     "@ngrx/effects": "^5.2.0",
     "@ngrx/store": "^5.2.0",
+    "apollo-angular": "^1.1.0",
+    "apollo-angular-link-http": "^1.1.0",
+    "apollo-cache-inmemory": "^1.2.1",
+    "apollo-client": "^2.3.1",
     "core-js": "^2.4.1",
+    "graphql-tag": "^2.9.2",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
