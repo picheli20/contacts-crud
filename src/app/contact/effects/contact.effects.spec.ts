@@ -8,11 +8,12 @@ import { of } from 'rxjs/observable/of';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { ContactEffects } from './contact.effects';
+
 import * as ContactActions from '../actions/contact.action';
 import { reducer, State } from '../reducers/contact.reducer';
+import { Contact } from '../models/contact.model';
 
 import { CacheService } from 'app/core/cache/cache.service';
-import { Contact } from 'app/contact/models/contact.model';
 
 
 @Injectable()

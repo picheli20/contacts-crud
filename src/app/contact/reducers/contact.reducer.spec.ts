@@ -1,7 +1,8 @@
 import * as contactReducer from './contact.reducer';
 
-import { Contact } from '../models/contact.model';
 import { State } from './contact.reducer';
+
+import { Contact } from '../models/contact.model';
 import { ContactActionTypes, ContactActionsUnion } from '../actions/contact.action';
 
 describe('ContactReducer', () => {

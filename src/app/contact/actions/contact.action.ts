@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+
 import { Contact } from '../models/contact.model';
 
 export enum ContactActionTypes {

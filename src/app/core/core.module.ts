@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { CacheService } from './cache/cache.service';
-import { STORAGE_TOKEN } from 'app/core/cache/cache.token';
+import { STORAGE_TOKEN } from './cache/cache.token';
 
 
 @NgModule({

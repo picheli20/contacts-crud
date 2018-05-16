@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
 
 import { ContactComponent } from './contact.component';
+
 import { ContactActionTypes } from '../actions/contact.action';
 import { reducer, State } from '../reducers/contact.reducer';
 import { Contact } from '../models/contact.model';
