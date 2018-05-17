@@ -15,6 +15,7 @@ import { animations } from './contact-form.animations';
 
 import { CountryService } from 'app/core/country/country.service';
 import { ICountry } from 'app/core/country/country.graphql';
+import { GlobalValidator } from 'app/core/validators/validatos';
 import { tap } from 'rxjs/operators/tap';
 
 @Component({
@@ -45,7 +46,7 @@ export class ContactFormComponent implements OnDestroy {
     this.form = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', Validators.required, GlobalValidator.mailFormat],
       country: ['', Validators.required],
     });
 
@@ -66,7 +67,7 @@ export class ContactFormComponent implements OnDestroy {
         id: [contact.id, Validators.required],
         name: [contact.name, Validators.required],
         surname: [contact.surname, Validators.required],
-        email: [contact.email, Validators.required],
+        email: [contact.email, Validators.required, GlobalValidator.mailFormat],
         country: [contact.country, Validators.required],
       }),
     );
