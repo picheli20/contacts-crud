@@ -4,20 +4,23 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "start": "npm run serve:be",
     "serve": "npm run serve:fe | npm run serve:be",
     "serve:fe": "ng serve --proxy-config proxy.conf.json",
     "serve:be": "node server",
-    "build": "ng build",
+    "build": "ng build --prod --aot --build-optimizer",
     "tdd": "npm run test -- --code-coverage",
     "test": "ng test --watch=true --sourcemaps=false",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "npm run build"
   },
   "private": true,
   "dependencies": {
     "@angular-devkit/core": "^0.6.1",
     "@angular/animations": "^5.0.0",
     "@angular/cdk": "^5.2.5",
+    "@angular/cli": "1.6.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
     "@angular/core": "^5.0.0",
@@ -36,10 +39,10 @@
     "core-js": "^2.4.1",
     "graphql-tag": "^2.9.2",
     "rxjs": "^5.5.2",
+    "typescript": "~2.7.2",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.0",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/language-service": "^5.0.0",
     "@types/country-list": "^1.1.0",
@@ -50,6 +53,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
+    "compression": "^1.7.2",
     "country-list": "^1.1.0",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
@@ -65,7 +69,6 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
     "ts-node": "^3.2.2",
-    "tslint": "~5.7.0",
-    "typescript": "~2.7.2"
+    "tslint": "~5.7.0"
   }
 }
