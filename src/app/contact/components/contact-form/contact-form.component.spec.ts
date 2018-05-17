@@ -2,9 +2,10 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs/observable/of';
+import { Subject } from 'rxjs/Subject';
 
 import { ContactFormComponent } from './contact-form.component';
 
@@ -17,6 +18,8 @@ describe('ContactFormComponent', () => {
   let component: ContactFormComponent;
   let fixture: ComponentFixture<ContactFormComponent>;
   let store: Store<State>;
+  const params = new Subject<Params>();
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -33,7 +36,9 @@ describe('ContactFormComponent', () => {
         {
           provide: CountryService,
           useValue: {
-            countries$: of([]),
+            countries$: of([
+              { id: 1 }
+            ]),
           }
         },
         {
@@ -45,7 +50,7 @@ describe('ContactFormComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            params: of({}),
+            params: params,
           }
         },
       ]
@@ -65,24 +70,50 @@ describe('ContactFormComponent', () => {
   });
 
   describe('.constructor()', () => {
+    const payload: any = {
+      id: 1,
+      name: 'Leia',
+      surname: 'Organa',
+      email: 'leia123princess@gmail.com',
+      country: 'Alderaan',
+    };
+
     it('should create the form', () => {
       ['name', 'surname', 'email', 'country'].map(i => expect(component.form.controls[i]).toBeTruthy());
+    });
+
+    it('should set this.editing to true if received an ID', () => {
+
+      store.dispatch({ type: ContactActionTypes.Create, payload });
+      params.next({ id: 1 });
+      fixture.detectChanges();
+
+      expect(component.editing).toBeTruthy();
+    });
+
+    it('should set the form values to be editable', () => {
+      store.dispatch({ type: ContactActionTypes.Create, payload });
+      params.next({ id: 1 });
+      fixture.detectChanges();
+
+      expect(component.form.value).toEqual(payload);
     });
   });
 
   describe('.submit()', () => {
+    const payload: any = {
+      name: 'Leia',
+      surname: 'Organa',
+      email: 'leia123princess@gmail.com',
+      country: 'Alderaan',
+    };
+
     it('should NOT submit if the form is invalid', () => {
       component.submit();
       expect(store.dispatch).not.toHaveBeenCalled();
     });
 
     it('should submit if the form is valid', () => {
-      const payload: any = {
-        name: 'Leia',
-        surname: 'Organa',
-        email: 'leia123princess@gmail.com',
-        country: 'Alderaan',
-      };
 
       Object.keys(payload).map(i => component.form.controls[i].setValue(payload[i]));
 

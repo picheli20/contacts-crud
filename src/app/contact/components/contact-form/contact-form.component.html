@@ -32,6 +32,6 @@
         <mat-option *ngFor="let country of countries$ | async" [value]="country">{{country.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-raised-button type="submit" [disabled]="!form.valid" color="primary">Add</button>
+    <button mat-raised-button type="submit" [disabled]="!form.valid" color="primary">Save</button>
   </form>
 </div>

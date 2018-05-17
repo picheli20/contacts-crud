@@ -15,6 +15,7 @@ import { animations } from './contact-form.animations';
 
 import { CountryService } from 'app/core/country/country.service';
 import { ICountry } from 'app/core/country/country.graphql';
+import { tap } from 'rxjs/operators/tap';
 
 @Component({
   selector: 'app-contact-form',
@@ -58,17 +59,17 @@ export class ContactFormComponent implements OnDestroy {
           map((contacts: Contact[]) => contacts.filter(item => item.id === id)),
           pluck('0'),
         )
-      )
-    ).subscribe((contact: Contact) => {
-      this.editing = true;
+      ),
+      tap(() => this.editing = true),
+    ).subscribe((contact: Contact) =>
       this.form = this.fb.group({
         id: [contact.id, Validators.required],
         name: [contact.name, Validators.required],
         surname: [contact.surname, Validators.required],
         email: [contact.email, Validators.required],
         country: [contact.country, Validators.required],
-      });
-    });
+      }),
+    );
 
     this.subscriptions.add(activateParamsSubscription);
   }
