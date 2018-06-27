@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { EffectsModule } from '@ngrx/effects';
-import { MatCardModule } from '@angular/material/card';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { ContactComponent } from './components/contact.component';
 import { ContactEffects } from './effects/contact.effects';
 import { reducer } from './reducers/contact.reducer';
-import { ContactComponent } from './components/contact.component';
-import { ContactFormComponent } from './components/contact-form/contact-form.component';
 
 @NgModule({
   imports: [
@@ -35,6 +35,6 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
   exports: [
     ContactComponent,
     ContactFormComponent,
-  ]
+  ],
 })
 export class ContactModule { }

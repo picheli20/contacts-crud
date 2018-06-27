@@ -1,4 +1,4 @@
-import { ICountry } from "app/core/country/country.graphql";
+import { ICountry } from 'app/core/country/country.graphql';
 
 export interface Contact {
   id?: number;

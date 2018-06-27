@@ -5,17 +5,16 @@ import { delay } from 'rxjs/operators/delay';
 
 import { CountryService } from './country.service';
 
-
 const gqlResponse = {
   data: {
     country: [
       {
         name: 'test',
         code: 'te',
-      }
-    ]
-  }
-}
+      },
+    ],
+  },
+};
 
 describe('CacheService', () => {
   beforeEach(() => {
@@ -27,7 +26,7 @@ describe('CacheService', () => {
           useValue: {
             query: () => of(gqlResponse).pipe(delay(0)),
           },
-        }
+        },
       ],
     });
   });

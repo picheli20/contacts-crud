@@ -2,19 +2,20 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { pluck } from 'rxjs/operators/pluck';
+import { Observable } from 'rxjs/Observable';
 import { filter } from 'rxjs/operators/filter';
 import { map } from 'rxjs/operators/map';
+import { pluck } from 'rxjs/operators/pluck';
 import { switchMap } from 'rxjs/operators/switchMap';
+import { Subscription } from 'rxjs/Subscription';
 
-import { Contact } from '../../models/contact.model';
 import { ContactActionTypes } from '../../actions/contact.action';
+import { Contact } from '../../models/contact.model';
 import { State } from '../../reducers/contact.reducer';
 import { animations } from './contact-form.animations';
 
-import { CountryService } from 'app/core/country/country.service';
 import { ICountry } from 'app/core/country/country.graphql';
+import { CountryService } from 'app/core/country/country.service';
 import { GlobalValidator } from 'app/core/validators/validatos';
 import { tap } from 'rxjs/operators/tap';
 
@@ -59,7 +60,7 @@ export class ContactFormComponent implements OnDestroy {
           pluck('contacts'),
           map((contacts: Contact[]) => contacts.filter(item => item.id === id)),
           pluck('0'),
-        )
+        ),
       ),
       tap(() => this.editing = true),
     ).subscribe((contact: Contact) =>

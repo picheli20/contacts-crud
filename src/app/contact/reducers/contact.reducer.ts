@@ -9,6 +9,22 @@ export const initialState: State = {
   contacts: [],
 };
 
+export const createReducer = (list: Contact[], item: Contact): Contact[] => {
+  return [ ...list, item ];
+};
+
+export const deleteReducer = (list: Contact[], item: Contact): Contact[] => {
+  return list.filter((contact: Contact) => contact.id !== item.id);
+};
+
+export const editReducer = (list: Contact[], item: Contact): Contact[] => {
+  return list.map(
+    (contact: Contact) => contact.id === item.id ?
+    { ...contact, ...item } :
+    contact,
+  );
+};
+
 export function reducer(state = initialState, { type, payload }: ContactActionsUnion): State {
   switch (type) {
     case ContactActionTypes.Create:
@@ -38,16 +54,4 @@ export function reducer(state = initialState, { type, payload }: ContactActionsU
     default:
       return state;
   }
-}
-
-export const deleteReducer = (list: Contact[], item: Contact): Contact[] => {
-  return list.filter((contact: Contact) => contact.id !== item.id);
-}
-
-export const editReducer = (list: Contact[], item: Contact): Contact[] => {
-  return list.map((contact: Contact) => contact.id === item.id ? Object.assign(contact, item) : contact);
-}
-
-export const createReducer = (list: Contact[], item: Contact): Contact[] => {
-  return [ ...list, item ];
 }

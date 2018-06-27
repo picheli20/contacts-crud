@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 import { ContactActionTypes } from '../actions/contact.action';
-import { State } from '../reducers/contact.reducer';
 import { Contact } from '../models/contact.model';
+import { State } from '../reducers/contact.reducer';
 import { animations } from './contact.animations';
 
 @Component({
@@ -19,7 +19,7 @@ export class ContactComponent {
 
   constructor(
     private store: Store<Contact>,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {
     this.contact$ = store.pipe(select('contact'));
   }

@@ -5,8 +5,8 @@ import { Store, StoreModule } from '@ngrx/store';
 import { ContactComponent } from './contact.component';
 
 import { ContactActionTypes } from '../actions/contact.action';
-import { reducer, State } from '../reducers/contact.reducer';
 import { Contact } from '../models/contact.model';
+import { reducer, State } from '../reducers/contact.reducer';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
@@ -18,7 +18,7 @@ describe('ContactComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       imports: [
         StoreModule.forRoot({
-          'contact': reducer
+          contact: reducer,
         }),
       ],
       declarations: [

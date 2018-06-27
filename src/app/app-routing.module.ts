@@ -12,12 +12,12 @@ const routes: Routes = [
   {
     path: 'add',
     component: ContactFormComponent,
-    outlet: 'modal'
+    outlet: 'modal',
   },
   {
     path: 'edit/:id',
     component: ContactFormComponent,
-    outlet: 'modal'
+    outlet: 'modal',
   },
 ];
 

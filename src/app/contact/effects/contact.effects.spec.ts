@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
 import { Actions, getEffectsMetadata, EffectsMetadata } from '@ngrx/effects';
+import { provideMockActions } from '@ngrx/effects/testing';
 import { Store, StoreModule } from '@ngrx/store';
 import { empty } from 'rxjs/observable/empty';
 import { of } from 'rxjs/observable/of';
@@ -10,11 +10,10 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ContactEffects } from './contact.effects';
 
 import * as ContactActions from '../actions/contact.action';
-import { reducer, State } from '../reducers/contact.reducer';
 import { Contact } from '../models/contact.model';
+import { reducer, State } from '../reducers/contact.reducer';
 
 import { CacheService } from 'app/core/cache/cache.service';
-
 
 @Injectable()
 export class ContactEffectsMock extends ContactEffects {
@@ -28,16 +27,14 @@ export class ContactEffectsMock extends ContactEffects {
 
 describe('ContactEffects', () => {
   let store: Store<State>;
-  let actions: ReplaySubject<any>;
+  const actions: ReplaySubject<any> = new ReplaySubject();
   let effects: ContactEffects;
   let metadata: EffectsMetadata<ContactEffects>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({
-          'contact': reducer
-        }),
+        StoreModule.forRoot({ contact: reducer }),
       ],
       providers: [
         ContactEffectsMock,
@@ -51,14 +48,14 @@ describe('ContactEffects', () => {
           useValue: {
             setItem: () => of({}),
             getItem: () => of([]),
-          }
+          },
         },
         {
           provide: Store,
           useValue: {
             dispatch: () => {},
-          }
-        }
+          },
+        },
       ],
     });
 
@@ -71,7 +68,7 @@ describe('ContactEffects', () => {
   });
 
   describe('.constructor()', () => {
-    it('should Rehydrate on the constructor',() => {
+    it('should Rehydrate on the constructor', () => {
 
       expect(store.dispatch).toHaveBeenCalledWith({
         type: ContactActions.ContactActionTypes.Rehydrate,

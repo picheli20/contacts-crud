@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 import { concatMap } from 'rxjs/operators/concatMap';
 import { map } from 'rxjs/operators/map';
 import { pluck } from 'rxjs/operators/pluck';
-import { Observable } from 'rxjs/Observable';
 
 import { CacheService } from 'app/core/cache/cache.service';
 
 import {
   ContactActionTypes,
-  Create
+  Create,
 } from '../actions/contact.action';
+import { Contact } from '../models/contact.model';
 import {
   deleteReducer,
   editReducer,
   createReducer,
 } from '../reducers/contact.reducer';
-import { Contact } from '../models/contact.model';
 
 @Injectable()
 export class ContactEffects {

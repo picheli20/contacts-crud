@@ -1,16 +1,16 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule } from '@ngrx/store';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Store, StoreModule } from '@ngrx/store';
 import { of } from 'rxjs/observable/of';
 import { Subject } from 'rxjs/Subject';
 
 import { ContactFormComponent } from './contact-form.component';
 
-import { reducer, State } from '../../reducers/contact.reducer';
 import { ContactActionTypes } from '../../actions/contact.action';
+import { reducer, State } from '../../reducers/contact.reducer';
 
 import { CountryService } from 'app/core/country/country.service';
 
@@ -20,12 +20,11 @@ describe('ContactFormComponent', () => {
   let store: Store<State>;
   const params = new Subject<Params>();
 
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [
-        StoreModule.forRoot({ 'contact': reducer }),
+        StoreModule.forRoot({ contact: reducer }),
         BrowserAnimationsModule,
       ],
       declarations: [
@@ -37,23 +36,21 @@ describe('ContactFormComponent', () => {
           provide: CountryService,
           useValue: {
             countries$: of([
-              { id: 1 }
+              { id: 1 },
             ]),
-          }
+          },
         },
         {
           provide: Router,
           useValue: {
             navigate: () => {},
-          }
+          },
         },
         {
           provide: ActivatedRoute,
-          useValue: {
-            params: params,
-          }
+          useValue: { params },
         },
-      ]
+      ],
     });
 
     store = TestBed.get(Store);

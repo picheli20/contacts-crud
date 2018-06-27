@@ -2,8 +2,8 @@ import * as contactReducer from './contact.reducer';
 
 import { State } from './contact.reducer';
 
-import { Contact } from '../models/contact.model';
 import { ContactActionTypes, ContactActionsUnion } from '../actions/contact.action';
+import { Contact } from '../models/contact.model';
 
 describe('ContactReducer', () => {
   describe('.createReducer()', () => {
@@ -17,7 +17,7 @@ describe('ContactReducer', () => {
     it('should delete the item to the list', () => {
       const result = contactReducer.deleteReducer(
         [{ id: 1 } as Contact],
-        { id: 1 } as Contact
+        { id: 1 } as Contact,
       );
       expect(result.length).toBe(0);
     });
@@ -27,7 +27,7 @@ describe('ContactReducer', () => {
     it('should edit the item to the list', () => {
       const result = contactReducer.editReducer(
         [{ id: 1, name: 'Luke' } as Contact, { id: 2, name: 'Anakin' } as Contact],
-        { id: 2, name: 'Darth' } as Contact
+        { id: 2, name: 'Darth' } as Contact,
       );
 
       expect(result[1].name).toBe('Darth');
@@ -38,10 +38,10 @@ describe('ContactReducer', () => {
     describe('ContactActionTypes.Create', () => {
       it('should create a new contact', () => {
         const result = contactReducer.reducer({
-          contacts: [ { id: 1, name: 'Luke' } ]
+          contacts: [ { id: 1, name: 'Luke' } ],
         } as State, {
           type: ContactActionTypes.Create,
-          payload: { id: 2, name: 'Chewbacca' } as Contact
+          payload: { id: 2, name: 'Chewbacca' } as Contact,
         });
 
         expect(result.contacts.length).toBe(2);
@@ -51,10 +51,10 @@ describe('ContactReducer', () => {
     describe('ContactActionTypes.Delete', () => {
       it('should delete the contact', () => {
         const result = contactReducer.reducer({
-          contacts: [ { id: 1, name: 'Luke' } ]
+          contacts: [ { id: 1, name: 'Luke' } ],
         } as State, {
           type: ContactActionTypes.Delete,
-          payload: { id: 1 } as Contact
+          payload: { id: 1 } as Contact,
         });
 
         expect(result.contacts.length).toBe(0);
@@ -64,10 +64,10 @@ describe('ContactReducer', () => {
     describe('ContactActionTypes.Create', () => {
       it('should create a new contact', () => {
         const result = contactReducer.reducer({
-          contacts: [ { id: 1, name: 'Luke' } ]
+          contacts: [ { id: 1, name: 'Luke' } ],
         } as State, {
           type: ContactActionTypes.Edit,
-          payload: { id: 1, name: 'Chewbacca' } as Contact
+          payload: { id: 1, name: 'Chewbacca' } as Contact,
         });
 
         expect(result.contacts.length).toBe(1);
@@ -78,10 +78,10 @@ describe('ContactReducer', () => {
     describe('ContactActionTypes.Rehydrate', () => {
       it('should reload the contact list', () => {
         const result = contactReducer.reducer({
-          contacts: [ { id: 1, name: 'Luke' } ]
+          contacts: [ { id: 1, name: 'Luke' } ],
         } as State, {
           type: ContactActionTypes.Rehydrate,
-          payload: [{ id: 1, name: 'Chewbacca' } as Contact]
+          payload: [{ id: 1, name: 'Chewbacca' } as Contact],
         });
 
         expect(result.contacts.length).toBe(1);
@@ -99,10 +99,10 @@ describe('ContactReducer', () => {
 
     it('should return the default state', () => {
       const result = contactReducer.reducer({
-        contacts: [ { id: 1, name: 'Luke' } ]
+        contacts: [ { id: 1, name: 'Luke' } ],
       } as State, {
         type: null,
-        payload: [{ id: 1, name: 'Chewbacca' } as Contact]
+        payload: [{ id: 1, name: 'Chewbacca' } as Contact],
       });
 
       expect(result.contacts.length).toBe(1);
